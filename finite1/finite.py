@@ -148,7 +148,7 @@ def algo2(constrained,seed):
         for i in range(T):
             probs=softmax([np.dot(phi(states[i],k),theta[i]) for k in range(nA)])
             delta=rewards[i]+np.dot(feat(states[i+1]),value[i+1])-np.dot(feat(states[i]),value[i])
-            psi=phi(states[i],actions[i])-np.sum([phi(states[i],k)*probs[k] for k in range(nA)])
+            psi=phi(states[i],actions[i])-sum([phi(states[i],k)*probs[k] for k in range(nA)])
             value[i]+=a*delta*feat(states[i])
             theta[i]+=b*((psi*delta)-(epsilon*theta[i]))
 
